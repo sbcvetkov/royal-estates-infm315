@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="locations"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Estates
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content-wrap" *ngFor="let region of locationEstates">
+    <ion-item color="tertiary">
+      <ion-label>{{region.region}}</ion-label>
+    </ion-item>
+    <ion-list>
+        <ion-item *ngFor="let estate of region.estates">
+          <ion-thumbnail class="estate-image" slot="start" >
+            <img src="{{estate.image}}">
+          </ion-thumbnail>
+          <div>
+            <h3>Ref No.{{estate.refNumber}}</h3>
+            <p style="font-size: 16px;">{{estate.type}}, {{estate.bedrooms}} Bedrooms</p>
+            <p style="font-size: 14px;">{{name}}, {{estate.region}}</p>
+          </div>
+          <ion-button fill="clear" slot="end" (click)="onViewClick(estate.id)">View</ion-button>
+        </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

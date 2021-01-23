@@ -1,0 +1,10 @@
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="start">
+    <ion-fab-button (click)="navigate()">
+      <ion-icon name="navigate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <agm-map style="width: 100%; height: 100%;" [latitude]="estate.latitude" [longitude]="estate.longitude" [zoom]="16">
+    <agm-marker [latitude]="estate.latitude" [longitude]="estate.longitude"></agm-marker>
+  </agm-map>
+</ion-content>

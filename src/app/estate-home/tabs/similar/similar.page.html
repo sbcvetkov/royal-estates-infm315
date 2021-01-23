@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-segment [value]="regionValue" (ionChange)="onRegionChange($event)">
+    <ion-segment-button value="region">
+      <ion-label>Region</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div>
+    <div class="filter-wrap">
+      <ion-label>Filter By Type: </ion-label>
+      <ion-select placeholder="Filter By Type" [value]="filterValue" [disabled]="isFilterDisabled" (ionChange)="onFilterChange($event)">
+        <ion-select-option value="Apartment">Apartment</ion-select-option>
+        <ion-select-option value="House">House</ion-select-option>
+        <ion-select-option value="Studio">Studio</ion-select-option>
+      </ion-select>
+      <ion-toggle [checked]="toggleValue" (ionChange)="onToggleChange()"></ion-toggle>
+    </div>
+  </div>
+  <div *ngFor="let region of locationEstates">
+    <ion-item color="success">
+      <ion-label > {{region.region}}</ion-label>
+    </ion-item>
+    <ion-virtual-scroll [items]="region.estates" approxItemHeight="320px">
+      <ion-item *virtualItem="let item; let itemBounds = bounds;">
+        <ion-thumbnail slot="start" >
+          <img src="{{item.image}}">
+        </ion-thumbnail>
+        <div>
+          <h2>Ref No.{{item.refNumber}}</h2>
+          <p style="font-size: 16px;">{{item.type}}, {{item.bedrooms}} Bedrooms</p>
+          <p style="font-size: 14px;">{{item.region}}</p>
+        </div>
+        <ion-button fill="clear" slot="end" (click)="onViewClick(item.id)">View</ion-button>
+      </ion-item>
+    </ion-virtual-scroll>
+  </div>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Royal Estates</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title>
+      My Estates
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="savedEstates.length < 1">
+    <ion-card class="estates-card">
+      <ion-card-content>
+        Select the button below and find new locations
+        <ion-button class="find-location-button" expand="full"  color="primary" href="/locations">
+          <ion-icon name="search"></ion-icon>
+          Find a Location
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="savedEstates.length > 0">
+    <ion-card class="estates-card">
+      <p class="find-location-text">Saved Estates</p>
+      <ion-list>
+        <ion-item *ngFor="let estate of savedEstates">
+          <ion-thumbnail class="estate-image" slot="start" >
+            <img src="{{estate.image}}">
+          </ion-thumbnail>
+          <div>
+            <h3>Ref No.{{estate.refNumber}}</h3>
+            <p style="font-size: 16px;">{{estate.type}}, {{estate.bedrooms}} Bedrooms</p>
+            <p style="font-size: 14px;">{{estate.region}}</p>
+          </div>
+          <ion-button fill="clear" slot="end" (click)="onViewClick(estate.id)">View</ion-button>
+        </ion-item>
+      </ion-list>
+      <p class="find-location-text">To save more estates, select a location, then you can save estates from their estate overview page.</p>
+      <ion-button class="find-location-button" expand="full"  color="primary" href="/locations">
+        <ion-icon name="search"></ion-icon>
+        Find a Location
+      </ion-button>
+    </ion-card>
+  </div>
+
+
+</ion-content>
